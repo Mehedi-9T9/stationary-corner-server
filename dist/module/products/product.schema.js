@@ -9,6 +9,6 @@ const productSchema = new mongoose_1.Schema({
     category: { type: String, required: true },
     description: { type: String, required: true },
     quantity: { type: Number, required: true },
-    inStock: { type: Boolean, required: true }
+    inStock: { type: Boolean, required: true },
 }, { timestamps: true });
 exports.ProductModel = (0, mongoose_1.model)('Product', productSchema);

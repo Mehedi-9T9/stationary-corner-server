@@ -17,14 +17,71 @@ const createProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* 
         const result = yield product_service_1.productServices.createProductIntoDB(productInfo);
         res.status(200).json({
             status: true,
-            message: "product Create Successful",
-            data: result
+            message: 'product Create Successful',
+            data: result,
         });
     }
     catch (error) {
         console.log(error);
     }
 });
+const getAllProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const result = yield product_service_1.productServices.getAllProductIntoDB();
+        res.status(200).json({
+            status: true,
+            message: 'Products retrieved successfully',
+            data: result,
+        });
+    }
+    catch (error) { }
+});
+const getSingleProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const id = req.params.productId;
+        const result = yield product_service_1.productServices.getSingleProductIntoDB(id);
+        res.status(200).json({
+            status: true,
+            message: 'Products retrieved successfully',
+            data: result,
+        });
+    }
+    catch (error) {
+        console.log(error);
+    }
+});
+const updateProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const id = req.params.productId;
+        const updateDoc = req.body.product;
+        const result = yield product_service_1.productServices.updateProductIntoDB(id, updateDoc);
+        res.status(200).json({
+            status: true,
+            message: 'Product updated successfully',
+            data: result,
+        });
+    }
+    catch (error) {
+        console.log(error);
+    }
+});
+const deleteProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const id = req.params.productId;
+        const result = yield product_service_1.productServices.deleteProductIntoDB(id);
+        res.status(200).json({
+            status: true,
+            message: 'Product updated successfully',
+            data: result,
+        });
+    }
+    catch (error) {
+    }
+});
 exports.productControlars = {
     createProduct,
+    getAllProduct,
+    getSingleProduct,
+    updateProduct,
+    deleteProduct
 };

@@ -11,10 +11,33 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.productServices = void 0;
 const product_schema_1 = require("./product.schema");
-const createProductIntoDB = (product) => __awaiter(void 0, void 0, void 0, function* () {
-    const result = yield product_schema_1.ProductModel.create(product);
+const createProductIntoDB = (productData) => __awaiter(void 0, void 0, void 0, function* () {
+    const product = new product_schema_1.ProductModel(productData);
+    const result = yield product.save();
+    return result;
+});
+const getAllProductIntoDB = () => __awaiter(void 0, void 0, void 0, function* () {
+    const result = yield product_schema_1.ProductModel.find();
+    return result;
+});
+const getSingleProductIntoDB = (id) => __awaiter(void 0, void 0, void 0, function* () {
+    const result = yield product_schema_1.ProductModel.findOne({ _id: id });
+    return result;
+});
+const updateProductIntoDB = (id, updateDoc) => __awaiter(void 0, void 0, void 0, function* () {
+    const filter = { _id: id };
+    const result = yield product_schema_1.ProductModel.findOneAndUpdate(filter, updateDoc);
+    return result;
+});
+const deleteProductIntoDB = (id) => __awaiter(void 0, void 0, void 0, function* () {
+    const filter = { _id: id };
+    const result = yield product_schema_1.ProductModel.deleteOne(filter);
     return result;
 });
 exports.productServices = {
     createProductIntoDB,
+    getAllProductIntoDB,
+    getSingleProductIntoDB,
+    updateProductIntoDB,
+    deleteProductIntoDB
 };

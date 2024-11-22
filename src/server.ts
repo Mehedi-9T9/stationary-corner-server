@@ -2,7 +2,6 @@ import app from './apps';
 import mongoose from 'mongoose';
 import config from './config';
 
-
 const server = async () => {
   try {
     //Database connect
