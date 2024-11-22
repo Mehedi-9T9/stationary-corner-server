@@ -8,23 +8,23 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-const apps_1 = __importDefault(require("./apps"));
-const mongoose_1 = __importDefault(require("mongoose"));
-const config_1 = __importDefault(require("./config"));
-const server = () => __awaiter(void 0, void 0, void 0, function* () {
+exports.productControlars = void 0;
+const product_service_1 = require("./product.service");
+const createProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        //Database connect
-        yield mongoose_1.default.connect(config_1.default.Database_URI);
-        apps_1.default.listen(config_1.default.port, () => {
-            console.log(`Example app listening on port ${config_1.default.port}`);
+        const productInfo = req.body.product;
+        const result = yield product_service_1.productServices.createProductIntoDB(productInfo);
+        res.status(200).json({
+            status: true,
+            message: "product Create Successful",
+            data: result
         });
     }
     catch (error) {
         console.log(error);
     }
 });
-server();
+exports.productControlars = {
+    createProduct,
+};
