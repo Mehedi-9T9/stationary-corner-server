@@ -1,6 +1,6 @@
 export type IProduct = {
-  name: 'Pen' | 'Notebook' | 'Eraser';
-  brand: 'Pilot' | 'Moleskine' | 'Faber-Castell';
+  name: string;
+  brand: string;
   price: number;
   category:
     | 'Writing'

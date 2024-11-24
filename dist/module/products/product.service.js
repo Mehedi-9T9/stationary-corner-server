@@ -16,20 +16,40 @@ const createProductIntoDB = (productData) => __awaiter(void 0, void 0, void 0, f
     const result = yield product.save();
     return result;
 });
-const getAllProductIntoDB = () => __awaiter(void 0, void 0, void 0, function* () {
-    const result = yield product_schema_1.ProductModel.find();
-    return result;
+const getAllProductIntoDB = (searchTerm) => __awaiter(void 0, void 0, void 0, function* () {
+    if (searchTerm) {
+        const products = yield product_schema_1.ProductModel.find({
+            $or: [
+                { name: { $regex: searchTerm, $options: 'i' } },
+                { brand: { $regex: searchTerm, $options: 'i' } },
+                { category: { $regex: searchTerm, $options: 'i' } },
+            ],
+        });
+        return products;
+    }
+    else {
+        const result = yield product_schema_1.ProductModel.find();
+        return result;
+    }
 });
 const getSingleProductIntoDB = (id) => __awaiter(void 0, void 0, void 0, function* () {
     const result = yield product_schema_1.ProductModel.findOne({ _id: id });
     return result;
 });
 const updateProductIntoDB = (id, updateDoc) => __awaiter(void 0, void 0, void 0, function* () {
+    const product = yield product_schema_1.ProductModel.findOne({ _id: id });
+    if (!product) {
+        throw new Error("Product Not Found");
+    }
     const filter = { _id: id };
     const result = yield product_schema_1.ProductModel.findOneAndUpdate(filter, updateDoc);
     return result;
 });
 const deleteProductIntoDB = (id) => __awaiter(void 0, void 0, void 0, function* () {
+    const product = yield product_schema_1.ProductModel.findOne({ _id: id });
+    if (!product) {
+        throw new Error("Product Not Found");
+    }
     const filter = { _id: id };
     const result = yield product_schema_1.ProductModel.deleteOne(filter);
     return result;
