@@ -5,16 +5,16 @@
 * Node JS   * Express JS  * Mongoose   * Typesctipt 
 
 <h2>Stationary Corner of  features</h2>
- - This is server of stationary corner
- - You can get all product
- - You can get single product with id 
- - You can update  product
- - You can delete  product
- - You can order product
+ <p> - This is server of stationary corner <p>
+ <p> - You can get all product <p>
+ <p> - You can get single product with id  <p>
+ <p> - You can update  product <p>
+ <p> - You can delete  product <p>
+ <p> - You can order product <p>
  <br/>
  <h2>how to run my project localy</h2>
-  - simple clone my project
-  - run command $ npm i
-  - run command $ npm start
+ <p> - simple clone my project</p>
+ <p> - run command $ npm i</p>
+ <p> - run command $ npm start</p>
   
 
