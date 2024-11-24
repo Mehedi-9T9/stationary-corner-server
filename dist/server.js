@@ -24,7 +24,6 @@ const server = () => __awaiter(void 0, void 0, void 0, function* () {
         });
     }
     catch (error) {
-        console.log(error);
     }
 });
 server();
